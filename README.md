@@ -1,4 +1,5 @@
-#  Customer Segmentation with Marketing Insights
+#  Customer Segmentation with Marketing Insights  [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/omermohd327-svg/Customer-Segmentation-with-Marketing-Insights
+/blob/main/notebook/customer_segmentation.ipynb)
 
 ##  Business Problem
 
@@ -52,7 +53,7 @@ Before clustering, exploratory analysis was performed to understand customer dem
 
 ### Distribution Analysis
 
-![EDA Distribution](images/eda_distribution.png)
+![EDA Distribution](images/eda_distributions.png)
 
 ### Key Observations
 
