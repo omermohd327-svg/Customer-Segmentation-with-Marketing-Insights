@@ -1,5 +1,8 @@
 #  Customer Segmentation with Marketing Insights  
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](http://customer-segmentation-with-marketing-insights-y9kuryeqhsqwtzso.streamlit.app/)
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/omermohd327-svg/Customer-Segmentation-with-Marketing-Insights/blob/main/notebook/customer_segmentation.ipynb)
+
+**Live app:** http://customer-segmentation-with-marketing-insights-y9kuryeqhsqwtzso.streamlit.app/
 
 ##  Business Problem
 
