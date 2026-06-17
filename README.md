@@ -33,15 +33,25 @@ The primary objectives of this project are:
 
 ### Source
 
-Mall Customers Dataset
+Customer Personality Analysis (Marketing Campaign) Dataset
 
-### Features
+### Raw Features (`data/raw/marketing_campaign.csv`)
 
-- Customer ID
-- Gender
-- Age
-- Annual Income (k$)
-- Spending Score (1–100)
+- ID, Year_Birth, Education, Marital_Status
+- Income, Kidhome, Teenhome, Dt_Customer, Recency
+- MntWines, MntFruits, MntMeatProducts, MntFishProducts, MntSweetProducts, MntGoldProds
+- NumDealsPurchases, NumWebPurchases, NumCatalogPurchases, NumStorePurchases, NumWebVisitsMonth
+- Complain, Response
+
+### Engineered Features (`data/processed/customer_segments.csv`)
+
+- Age (from Year_Birth)
+- Customer_Tenure_Days (from Dt_Customer)
+- Total_Spending (sum of all Mnt* columns)
+- Total_Children (Kidhome + Teenhome)
+- Education collapsed into Undergraduate / Graduate / Postgraduate
+- Living_With (Partner / Alone, derived from Marital_Status)
+- Income, Recency, Response, and the final cluster label
 
 These features are used to discover hidden customer patterns and group similar customers together.
 
@@ -164,66 +174,69 @@ The resulting clusters were analyzed to understand customer behavior patterns.
 
 ##  Segment Interpretation
 
-###  Cluster 0 — High Income, High Spending Customers
+
+###  Cluster 0 — Budget Families
 
 **Characteristics**
 
-- Premium customers
-- High purchasing power
-- Strong engagement
+- Lowest income (~$35.6k) and lowest spending (~$131)
+- Mostly partnered, with children
+- Weakest campaign response (6.2%)
+
+**Business Strategy**
+
+- Discount bundles
+- Family-value offers
+- Low priority for premium campaign spend
+
+---
+
+###  Cluster 1 — Established Shoppers
+
+**Characteristics**
+
+- Mid-to-high income (~$59.9k) and mid-to-high spending (~$796)
+- Mostly partnered, prefer in-store over web purchases
+- Moderate campaign response (17.4%)
 
 **Business Strategy**
 
 - Loyalty programs
-- VIP memberships
-- Premium experiences
-- Early access to products
+- In-store promotions
+- Targeted campaigns to grow share of wallet
 
 ---
 
-###  Cluster 1 — High Income, Low Spending Customers
+###  Cluster 2 — Premium High-Value
 
 **Characteristics**
 
-- Financially capable customers
-- Untapped spending potential
+- Highest income (~$74.7k) and highest spending (~$1,306)
+- Fewest children
+- Best campaign response (23.8%)
 
 **Business Strategy**
 
-- Personalized promotions
-- Targeted campaigns
-- Product recommendations
+- Top priority for new campaigns
+- VIP memberships and early access to products
+- Premium, high-touch experiences
 
 ---
 
-###  Cluster 2 — Low Income, Low Spending Customers
+###  Cluster 3 — Budget Singles
 
 **Characteristics**
 
-- Budget-conscious customers
-- Lower purchasing frequency
+- Low income (~$38.1k) and low spending (~$183)
+- Living alone
+- Moderate campaign response (13.8%)
 
 **Business Strategy**
 
-- Discounts
-- Bundle offers
+- Low-cost entry offers
+- Digital engagement to build long-term value
 - Cost-effective marketing
 
-
----
-
-###  Cluster 3 — Medium Income, Medium Spending Customers
-
-**Characteristics**
-
-- Stable customer segment
-- Consistent spending behavior
-
-**Business Strategy**
-
-- Retention campaigns
-- Cross-selling opportunities
-- Seasonal promotions
 
 ---
 
@@ -329,14 +342,19 @@ notebook/customer_segmentation.ipynb
 Customer-Segmentation-with-Marketing-Insights/
 │
 ├── data/
-│   └── Mall_Customers.csv
-│
+│   ├── raw/
+│   │   └── marketing_campaign.csv
+│   └── processed/
+│       └── customer_segments.csv
+|
 ├── notebook/
 │   └── customer_segmentation.ipynb
 │
 ├── models/
-│   ├── kmeans_model.pkl
-│   └── scaler.pkl
+|   ├── encoder.pkl
+│   ├── scaler.pkl
+│   ├── pca.pkl
+│   └── kmeans_model.pkl
 │
 ├── images/
 │   ├── pca_clusters.png
@@ -347,6 +365,7 @@ Customer-Segmentation-with-Marketing-Insights/
 │   ├── heatmap.png
 │   └── eda_distribution.png
 │
+├── app.py
 ├── requirements.txt
 ├── README.md
 └── .gitignore
@@ -357,5 +376,6 @@ Customer-Segmentation-with-Marketing-Insights/
 ##  Conclusion
 
 This project demonstrates how Machine Learning can transform raw customer data into meaningful business intelligence.
+By identifying distinct customer segments, businesses can improve marketing efficiency, personalize customer experiences, increase retention, and make more informed strategic decisions.
 
 By identifying distinct customer segments, businesses can improve marketing efficiency, personalize customer experiences, increase retention, and make more informed strategic decisions.
